@@ -42,10 +42,7 @@ function captainHistoryRisk (voyage, history) {
   let result = 1;
   history.length < 5?result += 4:result;
   result += history.filter(v => v.profit < 0).length;
-  if (aboutChina(voyage,history)) {
-    result -= 2;
-  }
-  return Math.max(result, 0);
+  return Math.max(aboutChina(voyage,history)?result -= 2:result, 0);
 }
 
 function voyageProfitFactor (voyage, history) {
