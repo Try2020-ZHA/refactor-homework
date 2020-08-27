@@ -1,16 +1,26 @@
+function includeMAOrCT(anOrder){
+  return anOrder.deliveryState==='MA'||anOrder.deliveryState==='CT';
+}
+
+function includeNYOrNH(anOrder){
+  return anOrder.deliveryState==='NY'||anOrder.deliveryState==='NH';
+}
+
+function includeMAOrCTOrNY(anOrder){
+  return anOrder.deliveryState==='MA'||anOrder.deliveryState==='CT'||anOrder.deliveryState==='NY';
+}
+
+function includeMEOrNH(anOrder){
+  return anOrder.deliveryState==='ME'||anOrder.deliveryState==='NH';
+}
+
 function deliveryDate (anOrder, isRush) {
   if (isRush) {
     let deliveryTime;
-    if ([
-      'MA',
-      'CT',
-    ].includes(anOrder.deliveryState)) {
+    if (includeMAOrCT(anOrder)) {
       deliveryTime = 1;
     }
-    else if ([
-      'NY',
-      'NH',
-    ].includes(anOrder.deliveryState)) {
+    else if (includeNYOrNH(anOrder)) {
       deliveryTime = 2;
     }
     else {
@@ -20,17 +30,10 @@ function deliveryDate (anOrder, isRush) {
   }
   else {
     let deliveryTime;
-    if ([
-      'MA',
-      'CT',
-      'NY',
-    ].includes(anOrder.deliveryState)) {
+    if (includeMAOrCTOrNY(anOrder)) {
       deliveryTime = 2;
     }
-    else if ([
-      'ME',
-      'NH',
-    ].includes(anOrder.deliveryState)) {
+    else if (includeMEOrNH(anOrder)) {
       deliveryTime = 3;
     }
     else {
