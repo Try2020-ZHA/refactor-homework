@@ -5,12 +5,12 @@ class Employee {
     this._type = type;
   }
 
+  isEngineerOrManagerOrSalesman(type){
+    return type==='engineer'||type==='manager'||type==='salesman';
+  }
+
   validateType (type) {
-    if (![
-      'engineer',
-      'manager',
-      'salesman',
-    ].includes(type)) {
+    if (!this.isEngineerOrManagerOrSalesman(type)) {
       throw new Error(`Employee cannot be of type ${type}`);
     }
   }
