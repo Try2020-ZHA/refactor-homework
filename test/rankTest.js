@@ -212,3 +212,435 @@ rankTest('calculate the captainHistoryRisk when history<5 and 1 profit<0 and abo
   const result=captainHistoryRisk(voyage,history);
   t.is(result,4);
 })
+
+rankTest('calculate the voyageProfitFactor when voyage zone is china and didn\'t have the history',t=>{
+  const voyage = {
+    zone: 'china',
+    length: 10,
+  };
+  const history = [
+    {
+      zone: 'east-indies',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'east-africa',
+      profit: 1
+    },{
+      zone: 'east-asia',
+      profit: 1
+    }
+  ];
+  const result=voyageProfitFactor(voyage,history);
+  t.is(result,3);
+})
+
+rankTest('calculate the voyageProfitFactor when voyage zone is china and has the history and voyage length>12 and <18',t=>{
+  const voyage = {
+    zone: 'china',
+    length: 15,
+  };
+  const history = [
+    {
+      zone: 'east-indies',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'east-africa',
+      profit: 1
+    },{
+      zone: 'east-asia',
+      profit: 1
+    },{
+      zone: 'china',
+      profit: 10
+    }
+  ];
+  const result=voyageProfitFactor(voyage,history);
+  t.is(result,7);
+})
+
+rankTest('calculate the voyageProfitFactor when voyage zone is china and has the history and voyage length>18',t=>{
+  const voyage = {
+    zone: 'china',
+    length: 19,
+  };
+  const history = [
+    {
+      zone: 'east-indies',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'east-africa',
+      profit: 1
+    },{
+      zone: 'east-asia',
+      profit: 1
+    },{
+      zone: 'china',
+      profit: 10
+    }
+  ];
+  const result=voyageProfitFactor(voyage,history);
+  t.is(result,6);
+})
+
+rankTest('calculate the voyageProfitFactor when voyage zone is china and has the history and its length>10 and voyage length>18',t=>{
+  const voyage = {
+    zone: 'china',
+    length: 19,
+  };
+  const history = [
+    {
+      zone: 'east-indies',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'east-africa',
+      profit: 1
+    },{
+      zone: 'east-asia',
+      profit: 1
+    },{
+      zone: 'china',
+      profit: 10
+    },{
+      zone: 'west-american',
+      profit: 15,
+    },{
+      zone: 'west-asia',
+      profit: 7,
+    },{
+      zone: 'east-american',
+      profit: 1
+    },{
+      zone: 'england',
+      profit: 1
+    },{
+      zone: 'germany',
+      profit: 10
+    }
+  ];
+  const result=voyageProfitFactor(voyage,history);
+  t.is(result,7);
+})
+
+rankTest('calculate the voyageProfitFactor when voyage zone is east-indies and history.length<8 and voyage.length<14',t=>{
+  const voyage = {
+    zone: 'east-indies',
+    length: 10,
+  };
+  const history = [
+    {
+      zone: 'east-indies',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'east-africa',
+      profit: 1
+    },{
+      zone: 'east-asia',
+      profit: 1
+    },{
+      zone: 'china',
+      profit: 10
+    }
+  ];
+  const result=voyageProfitFactor(voyage,history);
+  t.is(result,3);
+})
+
+rankTest('calculate the voyageProfitFactor when voyage zone is east-indies and history.length<8 and voyage.length>14',t=>{
+  const voyage = {
+    zone: 'east-indies',
+    length: 18,
+  };
+  const history = [
+    {
+      zone: 'east-indies',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'east-africa',
+      profit: 1
+    },{
+      zone: 'east-asia',
+      profit: 1
+    },{
+      zone: 'china',
+      profit: 10
+    }
+  ];
+  const result=voyageProfitFactor(voyage,history);
+  t.is(result,2);
+})
+
+rankTest('calculate the voyageProfitFactor when voyage zone is east-indies and history.length>8 and voyage.length>14',t=>{
+  const voyage = {
+    zone: 'east-indies',
+    length: 18,
+  };
+  const history = [
+    {
+      zone: 'east-indies',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'east-africa',
+      profit: 1
+    },{
+      zone: 'east-asia',
+      profit: 1
+    },{
+      zone: 'china',
+      profit: 10
+    },{
+      zone: 'west-american',
+      profit: 15,
+    },{
+      zone: 'west-asia',
+      profit: 7,
+    },{
+      zone: 'east-american',
+      profit: 1
+    },{
+      zone: 'england',
+      profit: 1
+    },{
+      zone: 'germany',
+      profit: 10
+    }
+  ];
+  const result=voyageProfitFactor(voyage,history);
+  t.is(result,3);
+})
+
+rankTest('calculate the voyageProfitFactor when voyage zone is east-indies and history.length>8 and voyage.length<14',t=>{
+  const voyage = {
+    zone: 'east-indies',
+    length: 12,
+  };
+  const history = [
+    {
+      zone: 'east-indies',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'east-africa',
+      profit: 1
+    },{
+      zone: 'east-asia',
+      profit: 1
+    },{
+      zone: 'china',
+      profit: 10
+    },{
+      zone: 'west-american',
+      profit: 15,
+    },{
+      zone: 'west-asia',
+      profit: 7,
+    },{
+      zone: 'east-american',
+      profit: 1
+    },{
+      zone: 'england',
+      profit: 1
+    },{
+      zone: 'germany',
+      profit: 10
+    }
+  ];
+  const result=voyageProfitFactor(voyage,history);
+  t.is(result,4);
+})
+
+rankTest('calculate the voyageProfitFactor when voyage zone is east-africa and history.length<8 and voyage.length<14',t=>{
+  const voyage = {
+    zone: 'east-africa',
+    length: 10,
+  };
+  const history = [
+    {
+      zone: 'china',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'east-africa',
+      profit: 1
+    },{
+      zone: 'east-asia',
+      profit: 1
+    },{
+      zone: 'china',
+      profit: 10
+    }
+  ];
+  const result=voyageProfitFactor(voyage,history);
+  t.is(result,2);
+})
+
+rankTest('calculate the voyageProfitFactor when voyage zone is east-africa and history.length<8 and voyage.length>14',t=>{
+  const voyage = {
+    zone: 'east-africa',
+    length: 18,
+  };
+  const history = [
+    {
+      zone: 'china',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'east-africa',
+      profit: 1
+    },{
+      zone: 'east-asia',
+      profit: 1
+    },{
+      zone: 'china',
+      profit: 10
+    }
+  ];
+  const result=voyageProfitFactor(voyage,history);
+  t.is(result,1);
+})
+
+rankTest('calculate the voyageProfitFactor when voyage zone is east-africa and history.length>8 and voyage.length>14',t=>{
+  const voyage = {
+    zone: 'east-africa',
+    length: 18,
+  };
+  const history = [
+    {
+      zone: 'china',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'east-africa',
+      profit: 1
+    },{
+      zone: 'east-asia',
+      profit: 1
+    },{
+      zone: 'china',
+      profit: 10
+    },{
+      zone: 'west-american',
+      profit: 15,
+    },{
+      zone: 'west-asia',
+      profit: 7,
+    },{
+      zone: 'east-american',
+      profit: 1
+    },{
+      zone: 'england',
+      profit: 1
+    },{
+      zone: 'germany',
+      profit: 10
+    }
+  ];
+  const result=voyageProfitFactor(voyage,history);
+  t.is(result,2);
+})
+
+rankTest('calculate the voyageProfitFactor when voyage zone is east-africa and history.length>8 and voyage.length<14',t=>{
+  const voyage = {
+    zone: 'east-africa',
+    length: 12,
+  };
+  const history = [
+    {
+      zone: 'china',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'east-africa',
+      profit: 1
+    },{
+      zone: 'east-asia',
+      profit: 1
+    },{
+      zone: 'china',
+      profit: 10
+    },{
+      zone: 'west-american',
+      profit: 15,
+    },{
+      zone: 'west-asia',
+      profit: 7,
+    },{
+      zone: 'east-american',
+      profit: 1
+    },{
+      zone: 'england',
+      profit: 1
+    },{
+      zone: 'germany',
+      profit: 10
+    }
+  ];
+  const result=voyageProfitFactor(voyage,history);
+  t.is(result,3);
+})
