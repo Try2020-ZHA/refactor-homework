@@ -23,6 +23,10 @@ function isContainChinaOrEastIndies(voyage){
   return voyage.zone==='china'||voyage.zone==='east-indies';
 }
 
+function aboutChina(voyage,history){
+  return voyage.zone === 'china' && hasChina(history)
+}
+
 function voyageRisk (voyage) {
   let result = 1;
   if (voyage.length > 4) {
@@ -47,7 +51,7 @@ function captainHistoryRisk (voyage, history) {
     result += 4;
   }
   result += history.filter(v => v.profit < 0).length;
-  if (voyage.zone === 'china' && hasChina(history)) {
+  if (aboutChina(voyage,history)) {
     result -= 2;
   }
   return Math.max(result, 0);
@@ -58,7 +62,7 @@ function voyageProfitFactor (voyage, history) {
   if (isContainChinaOrEastIndies(voyage)) {
     result += 1;
   }
-  if (voyage.zone === 'china' && hasChina(history)) {
+  if (aboutChina(voyage,history)) {
     result += 3;
     if (history.length > 10) {
       result += 1;
