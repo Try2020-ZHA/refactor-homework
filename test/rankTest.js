@@ -54,3 +54,24 @@ rankTest('calculate the voyage risk of voyage.length>8 and the destination is ch
   const result=voyageRisk(voyage);
   t.is(result,9);
 })
+
+rankTest('should return true if history includes china',t=>{
+  const history = [
+    {
+      zone: 'east-indies',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'china',
+      profit: -2,
+    },
+    {
+      zone: 'west-africa',
+      profit: 7,
+    },
+  ];
+  const result=hasChina(history);
+  t.is(result,true);
+})
