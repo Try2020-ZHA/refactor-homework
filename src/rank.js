@@ -47,28 +47,16 @@ function captainHistoryRisk (voyage, history) {
 
 function voyageProfitFactor (voyage, history) {
   let result = 2;
-  if (isContainChinaOrEastIndies(voyage)) {
-    result += 1;
-  }
+  isContainChinaOrEastIndies(voyage)?result += 1:result;
   if (aboutChina(voyage,history)) {
     result += 3;
-    if (history.length > 10) {
-      result += 1;
-    }
-    if (voyage.length > 12) {
-      result += 1;
-    }
-    if (voyage.length > 18) {
-      result -= 1;
-    }
+    history.length > 10?result += 1:result;
+    voyage.length > 12?result += 1:result;
+    voyage.length > 18?result -= 1:result;
   }
   else {
-    if (history.length > 8) {
-      result += 1;
-    }
-    if (voyage.length > 14) {
-      result -= 1;
-    }
+    history.length > 8?result += 1:result;
+    voyage.length > 14?result -= 1:result;
   }
   return result;
 }
