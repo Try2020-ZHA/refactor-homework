@@ -19,6 +19,10 @@ const history = [
   },
 ];
 
+function hasChina (history) {
+  return history.some(v => 'china' === v.zone);
+}
+
 function isContainChinaOrEastIndies(voyage){
   return voyage.zone==='china'||voyage.zone==='east-indies';
 }
@@ -29,27 +33,14 @@ function aboutChina(voyage,history){
 
 function voyageRisk (voyage) {
   let result = 1;
-  if (voyage.length > 4) {
-    result += 2;
-  }
-  if (voyage.length > 8) {
-    result += voyage.length - 8;
-  }
-  if (isContainChinaOrEastIndies(voyage)) {
-    result += 4;
-  }
-  return result;
-}
-
-function hasChina (history) {
-  return history.some(v => 'china' === v.zone);
+  voyage.length > 4?result += 2:result;
+  voyage.length > 8?result += voyage.length - 8:result;
+  return isContainChinaOrEastIndies(voyage)?result += 4:result;
 }
 
 function captainHistoryRisk (voyage, history) {
   let result = 1;
-  if (history.length < 5) {
-    result += 4;
-  }
+  history.length < 5?result += 4:result;
   result += history.filter(v => v.profit < 0).length;
   if (aboutChina(voyage,history)) {
     result -= 2;
