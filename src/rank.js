@@ -26,7 +26,7 @@ function isContainChinaOrEastIndies(voyage) {
   return voyage.zone === 'china' || voyage.zone === 'east-indies';
 }
 
-function aboutChina(voyage, history) {
+function isAboutChina(voyage, history) {
   return voyage.zone === 'china' && hasChina(history)
 }
 
@@ -41,17 +41,16 @@ function captainHistoryRisk(voyage, history) {
   let result = 1;
   history.length < 5 ? result += 4 : result;
   result += history.filter(v => v.profit < 0).length;
-  return Math.max(aboutChina(voyage, history) ? result -= 2 : result, 0);
+  return Math.max(isAboutChina(voyage, history) ? result -= 2 : result, 0);
 }
 
 function voyageProfitFactor(voyage, history) {
   let result = 2;
   isContainChinaOrEastIndies(voyage) ? result += 1 : result;
-  if (aboutChina(voyage, history)) {
+  if (isAboutChina(voyage, history)) {
     result += 3;
     history.length > 10 ? result += 1 : result;
-    voyage.length > 12 ? result += 1 : result;
-    voyage.length > 18 ? result -= 1 : result;
+    voyage.length > 12 && voyage.length < 19 ? result += 1 : result;
   } else {
     history.length > 8 ? result += 1 : result;
     voyage.length > 14 ? result -= 1 : result;
@@ -63,11 +62,7 @@ function rating(voyage, history) {
   const profit = voyageProfitFactor(voyage, history);
   const risk = voyageRisk(voyage);
   const riskOfCaptain = captainHistoryRisk(voyage, history);
-  if (profit * 3 > (risk + riskOfCaptain * 2)) {
-    return 'A';
-  } else {
-    return 'B';
-  }
+  return profit * 3 > risk + riskOfCaptain * 2 ? 'A' : 'B';
 }
 
 module.exports = {
